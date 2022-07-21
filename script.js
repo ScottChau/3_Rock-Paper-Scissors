@@ -19,45 +19,33 @@ function gameStart(playerSelection, computerSelection) {
   console.log(`Player:${playerChoice}, Computer:${computerSelection}`);
 
   // Player wins
-  if (playerChoice == "Rock" && computerSelection == "Scissors") {
-    console.log("You Win! Rock beats Scissors");
-    return (playerScore += 1);
-  } else if (computerSelection == "Rock" && playerChoice == "Paper") {
-    console.log("You Win! Paper beats Rock");
-    return (playerScore += 1);
-  } else if (computerSelection == "Paper" && playerChoice == "Scissors") {
-    console.log("You Win! Scissors beats Paper");
-    return (playerScore += 1);
-  } else if (computerSelection == "Rock" && playerChoice == "Paper") {
-    console.log("You Win! Paper beats Rock");
-    return (playerScore += 1);
-  } else if (computerSelection == "Scissors" && playerChoice == "Rock") {
-    console.log("You Win! Rock beats Scissors");
-    return (playerScore += 1);
-    // Computer wins
-  } else if (computerSelection == "Paper" && playerChoice == "Rock") {
-    console.log("You Lose! Paper beats Rock");
-    return (computerScore += 1);
-  } else if (computerSelection == "Rock" && playerChoice == "Scissors") {
-    console.log("You Lose! Rock beats Scissors");
-    return (computerScore += 1);
-  } else if (computerSelection == "Paper" && playerChoice == "Rock") {
-    console.log("You Lose! Paper beats Rock");
-    return (computerScore += 1);
-  } else if (computerSelection == "Scissors" && playerChoice == "Paper") {
-    console.log("You Lose! Scissors beats Paper");
-    return (computerScore += 1);
-  } else if (computerSelection == "Rock" && playerChoice == "Scissors") {
-    console.log("You Lose! Rock beats Scissors");
-    return (computerScore += 1);
-  } else {
+  if (playerChoice === computerSelection) {
     console.log("Draw!");
+  } else if (
+    (computerSelection == "Rock" && playerChoice == "Paper") ||
+    (computerSelection == "Paper" && playerChoice == "Scissors") ||
+    (computerSelection == "Scissors" && playerChoice == "Rock")
+  ) {
+    console.log(`You win! ${playerChoice} beats ${computerSelection}`);
+    return (playerScore += 1);
+
+    // Computer wins
+  } else if (
+    (playerChoice == "Rock" && computerSelection == "Paper") ||
+    (playerChoice == "Paper" && computerSelection == "Scissors") ||
+    (playerChoice == "Scissors" && computerSelection == "Rock")
+  ) {
+    console.log(`You lose! ${computerSelection} beats ${playerChoice}`);
+    return (computerScore += 1);
+    // Invaild input
+  } else {
+    console.log(`Invalid Input, please type "Rock, Paper,Scissor" `);
   }
 }
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    gameStart(prompt("Paper Rock or Scissors?"), computerChoice());
+    gameStart(prompt("Rock, Paper or Scissors?"), computerChoice());
     console.log(
       `Player Scores: ${playerScore} Computer Scores ${computerScore}`
     );
