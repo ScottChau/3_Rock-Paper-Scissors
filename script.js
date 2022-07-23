@@ -2,6 +2,7 @@ const container = document.querySelector("#container");
 const content = document.createElement("div");
 const computerC = document.createElement("p");
 const winLose = document.createElement("h2");
+const scoreBoard = document.createElement("p");
 
 function computerChoice() {
   randomNumber = Math.floor(Math.random() * 3);
@@ -23,14 +24,21 @@ let computerScore = 0;
 function score() {
   if (playerScore === 5) {
     winLose.textContent = "You Win!!";
+    rock.setAttribute("disabled", "disabled");
+    paper.setAttribute("disabled", "disabled");
+    scissors.setAttribute("disabled", "disabled");
   } else if (computerScore === 5) {
     winLose.textContent = "You Lose!!";
-  } else {
-    content.textContent = `Player Score: ${playerScore} Computer Score ${computerScore}`;
+    rock.setAttribute("disabled", "disabled");
+    paper.setAttribute("disabled", "disabled");
+    scissors.setAttribute("disabled", "disabled");
   }
 
+  scoreBoard.textContent = `Player Score: ${playerScore} Computer Score ${computerScore}`;
+  content.appendChild(scoreBoard);
   content.appendChild(computerC);
   content.appendChild(winLose);
+
   container.appendChild(content);
 }
 
@@ -76,16 +84,14 @@ function scissorsC() {
   }
 }
 
-if (playerScore <= 5 || computerScore <= 5) {
-  const rock = document.querySelector("#rock");
-  rock.addEventListener("click", rockC);
+const rock = document.querySelector("#rock");
+rock.addEventListener("click", rockC);
 
-  const paper = document.querySelector("#paper");
-  paper.addEventListener("click", paperC);
+const paper = document.querySelector("#paper");
+paper.addEventListener("click", paperC);
 
-  const scissors = document.querySelector("#scissors");
-  scissors.addEventListener("click", scissorsC);
-}
+const scissors = document.querySelector("#scissors");
+scissors.addEventListener("click", scissorsC);
 
 // adding content
 
