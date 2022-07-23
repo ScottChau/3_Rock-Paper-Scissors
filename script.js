@@ -1,23 +1,36 @@
-// Computer
+const container = document.querySelector("#container");
+const content = document.createElement("div");
+const computerC = document.createElement("p");
+const winLose = document.createElement("h2");
+
 function computerChoice() {
   randomNumber = Math.floor(Math.random() * 3);
   if (randomNumber == 0) {
-    return "rock";
+    result = "rock";
   } else if (randomNumber == 1) {
-    return "paper";
+    result = "paper";
   } else if (randomNumber == 2) {
-    return "scissors";
+    result = "scissors";
   }
+  computerC.textContent = `Computer: ${result}`;
+
+  return result;
 }
 
 let playerScore = 0;
 let computerScore = 0;
 
 function score() {
-  const container = document.querySelector("#container");
-  const content = document.createElement("div");
-  content.classList.add("content");
-  content.textContent = `Player Score: ${playerScore} Computer Score ${computerScore}`;
+  if (playerScore === 5) {
+    winLose.textContent = "You Win!!";
+  } else if (computerScore === 5) {
+    winLose.textContent = "You Lose!!";
+  } else {
+    content.textContent = `Player Score: ${playerScore} Computer Score ${computerScore}`;
+  }
+
+  content.appendChild(computerC);
+  content.appendChild(winLose);
   container.appendChild(content);
 }
 
@@ -27,11 +40,9 @@ function rockC() {
   if (computer == "rock") {
     return score();
   } else if (computer == "paper") {
-    console.log("You lose!");
     computerScore += 1;
     return score();
   } else if (computer == "scissors") {
-    console.log("You win");
     playerScore += 1;
     return score();
   }
@@ -43,11 +54,9 @@ function paperC() {
   if (computer == "paper") {
     return score();
   } else if (computer == "scissors") {
-    console.log("You lose");
     computerScore += 1;
     return score();
   } else if (computer == "rock") {
-    console.log("You win");
     playerScore += 1;
     return score();
   }
@@ -59,24 +68,24 @@ function scissorsC() {
   if (computer == "scissors") {
     return score();
   } else if (computer == "rock") {
-    console.log("You lose");
     computerScore += 1;
     return score();
   } else if (computer == "paper") {
-    console.log("You win");
     playerScore += 1;
     return score();
   }
 }
 
-const rock = document.querySelector("#rock");
-rock.addEventListener("click", rockC);
+if (playerScore <= 5 || computerScore <= 5) {
+  const rock = document.querySelector("#rock");
+  rock.addEventListener("click", rockC);
 
-const paper = document.querySelector("#paper");
-paper.addEventListener("click", paperC);
+  const paper = document.querySelector("#paper");
+  paper.addEventListener("click", paperC);
 
-const scissors = document.querySelector("#scissors");
-scissors.addEventListener("click", scissorsC);
+  const scissors = document.querySelector("#scissors");
+  scissors.addEventListener("click", scissorsC);
+}
 
 // adding content
 
