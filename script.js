@@ -84,6 +84,23 @@ function scissorsC() {
   }
 }
 
+function resetC() {
+  playerScore = 0;
+  computerScore = 0;
+  document.getElementById("rock").disabled = false;
+  document.getElementById("paper").disabled = false;
+  document.getElementById("scissors").disabled = false;
+
+  scoreBoard.textContent = "";
+  computerC.textContent = "";
+  winLose.textContent = "";
+
+  content.appendChild(scoreBoard);
+  content.appendChild(computerC);
+  content.appendChild(winLose);
+  container.appendChild(content);
+}
+
 const rock = document.querySelector("#rock");
 rock.addEventListener("click", rockC);
 
@@ -93,22 +110,5 @@ paper.addEventListener("click", paperC);
 const scissors = document.querySelector("#scissors");
 scissors.addEventListener("click", scissorsC);
 
-// adding content
-
-// function game() {
-//   for (let i = 0; i < 5; i++) {
-//     gameStart(prompt("Rock, Paper or Scissors?"), computerChoice());
-//     console.log(
-//       `Player Scores: ${playerScore} Computer Scores ${computerScore}`
-//     );
-//   }
-//   if (playerScore > computerScore) {
-//     console.log("Player wins");
-//   } else if (computerScore > playerScore) {
-//     console.log("Computer wins");
-//   } else {
-//     console.log("Draw");
-//   }
-// }
-
-// game();
+const reset = document.querySelector("#reset");
+reset.addEventListener("click", resetC);
